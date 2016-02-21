@@ -3,27 +3,19 @@
 %{?maven_find_provides_and_requires}
 
 Name:           %{?scl_prefix}%{pkg_name}
-Version:        1.15
-Release:        8.11%{?dist}
+Version:        1.21
+Release:        3.1%{?dist}
 Summary:        Plexus Interpolation API
-
 License:        ASL 2.0 and ASL 1.1 and MIT
-URL:            http://plexus.codehaus.org/plexus-components/plexus-interpolation
+URL:            https://github.com/codehaus-plexus/plexus-interpolation
+BuildArch:      noarch
+
 Source0:        https://github.com/sonatype/%{pkg_name}/archive/%{pkg_name}-%{version}.tar.gz#/%{pkg_name}-%{version}.tar.gz
 
-BuildArch: noarch
-
-BuildRequires: %{?scl_prefix_java_common}junit
-BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: %{?scl_prefix}maven-resources-plugin
-BuildRequires: %{?scl_prefix}maven-compiler-plugin
-BuildRequires: %{?scl_prefix}maven-jar-plugin
-BuildRequires: %{?scl_prefix}maven-install-plugin
-BuildRequires: %{?scl_prefix}maven-javadoc-plugin
-BuildRequires: %{?scl_prefix}maven-surefire-plugin
-BuildRequires: %{?scl_prefix}maven-surefire-provider-junit
-BuildRequires: %{?scl_prefix}maven-reporting-impl
-BuildRequires: %{?scl_prefix}maven-doxia-sitetools
+BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix_java_common}mvn(junit:junit)
+BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-release-plugin)
+BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-components:pom:)
 
 %description
 Plexus interpolator is the outgrowth of multiple iterations of development
@@ -43,7 +35,7 @@ API documentation for %{pkg_name}.
 %build
 %{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
-%mvn_file  : plexus/interpolation
+%mvn_file : plexus/interpolation
 %mvn_build
 %{?scl:EOF}
 
@@ -60,6 +52,18 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Tue Jan 12 2016 Michal Srb <msrb@redhat.com> - 1.21-3.1
+- Prepare spec for SCL build
+
+* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.21-3
+- Cleanup spec file
+
+* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.21-2
+- Update upstream URL
+
+* Tue Jan 12 2016 Mikolaj Izdebski <mizdebsk@redhat.com> - 1.21-1
+- Update to upstream version 1.21
+
 * Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.15-8.11
 - maven33 rebuild #2
 
