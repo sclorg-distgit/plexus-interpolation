@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.15
-Release:        8.10%{?dist}
+Release:        8.11%{?dist}
 Summary:        Plexus Interpolation API
 
 License:        ASL 2.0 and ASL 1.1 and MIT
@@ -15,15 +15,15 @@ BuildArch: noarch
 
 BuildRequires: %{?scl_prefix_java_common}junit
 BuildRequires: %{?scl_prefix_java_common}maven-local
-BuildRequires: maven30-maven-resources-plugin
-BuildRequires: maven30-maven-compiler-plugin
-BuildRequires: maven30-maven-jar-plugin
-BuildRequires: maven30-maven-install-plugin
-BuildRequires: maven30-maven-javadoc-plugin
-BuildRequires: maven30-maven-surefire-plugin
-BuildRequires: maven30-maven-surefire-provider-junit
-BuildRequires: maven30-maven-reporting-impl
-BuildRequires: maven30-maven-doxia-sitetools
+BuildRequires: %{?scl_prefix}maven-resources-plugin
+BuildRequires: %{?scl_prefix}maven-compiler-plugin
+BuildRequires: %{?scl_prefix}maven-jar-plugin
+BuildRequires: %{?scl_prefix}maven-install-plugin
+BuildRequires: %{?scl_prefix}maven-javadoc-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-plugin
+BuildRequires: %{?scl_prefix}maven-surefire-provider-junit
+BuildRequires: %{?scl_prefix}maven-reporting-impl
+BuildRequires: %{?scl_prefix}maven-doxia-sitetools
 
 %description
 Plexus interpolator is the outgrowth of multiple iterations of development
@@ -41,14 +41,14 @@ API documentation for %{pkg_name}.
 %setup -q -n %{pkg_name}-%{pkg_name}-%{version}
 
 %build
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_file  : plexus/interpolation
 %mvn_build
 %{?scl:EOF}
 
 %install
-%{?scl:scl enable maven30 %{scl} - <<"EOF"}
+%{?scl:scl enable %{scl} - <<"EOF"}
 set -e -x
 %mvn_install
 %{?scl:EOF}
@@ -60,6 +60,9 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Mon Jan 11 2016 Michal Srb <msrb@redhat.com> - 1.15-8.11
+- maven33 rebuild #2
+
 * Sat Jan 09 2016 Michal Srb <msrb@redhat.com> - 1.15-8.10
 - maven33 rebuild
 
