@@ -4,7 +4,7 @@
 
 Name:           %{?scl_prefix}%{pkg_name}
 Version:        1.21
-Release:        3.1%{?dist}
+Release:        3.2%{?dist}
 Summary:        Plexus Interpolation API
 License:        ASL 2.0 and ASL 1.1 and MIT
 URL:            https://github.com/codehaus-plexus/plexus-interpolation
@@ -12,7 +12,7 @@ BuildArch:      noarch
 
 Source0:        https://github.com/sonatype/%{pkg_name}/archive/%{pkg_name}-%{version}.tar.gz#/%{pkg_name}-%{version}.tar.gz
 
-BuildRequires:  %{?scl_prefix_java_common}maven-local
+BuildRequires:  %{?scl_prefix}maven-local
 BuildRequires:  %{?scl_prefix_java_common}mvn(junit:junit)
 BuildRequires:  %{?scl_prefix}mvn(org.apache.maven.plugins:maven-release-plugin)
 BuildRequires:  %{?scl_prefix}mvn(org.codehaus.plexus:plexus-components:pom:)
@@ -52,6 +52,9 @@ set -e -x
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Mon Feb 08 2016 Michal Srb <msrb@redhat.com> - 1.21-3.2
+- Fix BR on maven-local & co.
+
 * Tue Jan 12 2016 Michal Srb <msrb@redhat.com> - 1.21-3.1
 - Prepare spec for SCL build
 
