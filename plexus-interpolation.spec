@@ -3,7 +3,7 @@
 
 Name:           %{?scl_prefix}plexus-interpolation
 Version:        1.22
-Release:        7.1%{?dist}
+Release:        7.2%{?dist}
 Summary:        Plexus Interpolation API
 License:        ASL 2.0 and ASL 1.1 and MIT
 URL:            https://github.com/codehaus-plexus/plexus-interpolation
@@ -43,6 +43,9 @@ API documentation for %{pkg_name}.
 %files javadoc -f .mfiles-javadoc
 
 %changelog
+* Thu Jun 22 2017 Michael Simacek <msimacek@redhat.com> - 1.22-7.2
+- Mass rebuild 2017-06-22
+
 * Wed Jun 21 2017 Java Maintainers <java-maint@redhat.com> - 1.22-7.1
 - Automated package import and SCL-ization
 
